@@ -2,43 +2,42 @@ import React from "react";
 import styled from "styled-components";
 import kakaoFriends from "./kakaoFriends.png";
 
-const StBox = styled.div`
-  text-align: center;
-  font-size: 50px;
-  color: lightskyblue;
-`;
+// const Wrapper = styled.div``;
 
 const StBody = styled.div`
   display: flex;
   justify-content: center;
+  flex-wrap: nowrap;
+  position: relative;
   align-items: center;
+  background-image: url(${kakaoFriends});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 500px;
 `;
-// const StImg = styled.img`
-//   img {
-//     background-image: url(${kakaoFriends});
-//     margin: 0px;
-//     width: 100vw;
-//     height: 100vh;
-//     background-size: cover;
-//     background-repeat: no-repeat;
-//   }
-// `;
+
+const StTitle = styled.div`
+  display: block;
+  text-align: center;
+  font-size: 50px;
+  font-weight: 600;
+  color: white;
+  position: absolute;
+  width: 100%;
+  top: 150px;
+  left: 50%;
+  min-width: 300px;
+  transform: translate(-50%, -50%);
+`;
 
 const Header = () => {
   return (
     <StBody>
-      <StBox>
-        <img
-          src={kakaoFriends}
-          alt="background-img"
-          style={{
-            width: "100%",
-            height: "100%",
-            backgroundSize: "cover",
-          }}
-        ></img>
+      <StTitle>
         <div>KakaoFriends Fan Letter</div>
-      </StBox>
+      </StTitle>
     </StBody>
   );
 };
