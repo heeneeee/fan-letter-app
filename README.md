@@ -15,8 +15,7 @@ Header
 
 
 
-
-
+--------------------------------------------------------------------------
 ![Form_](https://github.com/heeneeee/fan-letter-app/assets/144337252/baa62b02-116b-4eeb-a1fa-2b9097bf30d3)
 
 
@@ -37,7 +36,7 @@ Header
 
 
 
-
+--------------------------------------------------------------------------
 ![LetterBox](https://github.com/heeneeee/fan-letter-app/assets/144337252/46276f00-e352-4ac5-9f3d-a51fb136e174)
 
 
@@ -59,7 +58,7 @@ LetteBox
 
 
 
-
+--------------------------------------------------------------------------
    
 ![Detail](https://github.com/heeneeee/fan-letter-app/assets/144337252/fec0c4bc-fddd-4b03-9f7c-2be84a9eb9cc)
 ![Detail(수정완료)](https://github.com/heeneeee/fan-letter-app/assets/144337252/e1bc9047-8e2e-4b76-840e-4ae312f96597)
@@ -81,7 +80,7 @@ Detail
 
 
 
-
+--------------------------------------------------------------------------
 Remind
 아쉬움이 많은 프로젝트였다
 일주일이라는 기간 동안 잘 해낼 수 있을 거라 생각했지만
