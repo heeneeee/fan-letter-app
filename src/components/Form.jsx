@@ -1,20 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import LetterBox from "./LetterBox";
-// import Button from "./Button";
-// import { data } from "shared/data";
-
-// form 창 수정~~
-
-const StLetterBox = styled.div`
-  background-color: lightgray;
-  width: 700px;
-  height: 500px;
-  border-radius: 15px;
-  padding: 30px;
-  display: flex;
-  justify-content: center;
-`;
+import uuid from "react-uuid";
 
 const FormBox = styled.div`
   display: flex;
@@ -23,83 +9,126 @@ const FormBox = styled.div`
   align-items: center;
 `;
 
+const StLetterBox = styled.div`
+  background-color: lightgray;
+  width: 700px;
+  height: 250px;
+  border-radius: 15px;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const InputNickname = styled.input`
+  width: 300px;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: 0px;
+  height: 20px;
+`;
+
+const InputContents = styled.input`
+  width: 400px;
+  height: 80px;
+  border-radius: 5px;
+  border: 0px;
+  height: 80px;
+`;
+const StLetterSubmitBtn = styled.button`
+  margin-top: 20px;
+  margin-left: 320px;
+  border-radius: 15px;
+  padding: 5px;
+  width: 100px;
+  background-color: lightsalmon;
+`;
+
+const StSelect = styled.select`
+  margin-left: 10px;
+  border-radius: 5px;
+  border: 0px;
+  height: 20px;
+`;
+
 const Form = ({ letter, setLetter }) => {
   const [nickname, setNickname] = useState("");
   const [contents, setContents] = useState("");
+  const [member, setMember] = useState("RYAN");
 
-  const [printedChar, setPrintedChar] = useState("RYAN");
-  console.log(letter);
   // 닉네임 input창 onChang핸들러
   const onChangeNameHandeler = (event) => {
-    setNickname(event.targer.value);
+    setNickname(event.target.value);
   };
 
   // 내용 input창 onChang핸들러
   const onChangeContentsHandeler = (event) => {
-    setContents(event.targer.value);
+    setContents(event.target.value);
   };
 
   // option창 onChange 핸들러
   const onChangeSelectedHandler = (event) => {
-    setSelected(event.targer.value);
+    setMember(event.target.value);
   };
 
-  const kakaoFriends = ["RYAN", "APEACH", "TUBE", "CHOONSIK"];
-  const [selected, setSelected] = useState("RYAN");
+  //팬레터 등록
+  const onSubmitLetter = (event) => {
+    event.preventDefault();
+    if (nickname === "" && contents === "") {
+      alert("내용을 입력해주세요!");
+    }
+    const newReply = {
+      createdAt: new Date().toISOString(),
+      id: uuid(),
+      nickname: nickname,
+      avatar:
+        "https://i.namu.wiki/i/qkyqIPNtVxlT_imBEI2g9EzINfuo44pszLQrhac-KMmMls2m3TQBjQrfT251bKldEsV2_um8vDLUYAWNCUbj1A.webp",
+      contents: contents,
+      writedTo: member,
+    };
 
-  const [kakao, setKakao] = useState("");
-  const nameBtn = (item) => {
-    setKakao(item);
+    setLetter([...letter, newReply]);
+    setNickname("");
+    setContents("");
   };
 
   return (
     // 팬레터 박스
-    <FormBox
-      onSubmit={(event) => {
-        event.preventDefault();
-        const newReply = {
-          id: 7, //uuid()로 수정!!!!!!!!!
-          nickname: nickname,
-          avatar: "사진",
-          contents: contents,
-          writeTo: printedChar,
-        };
-        setPrintedChar([...letter, newReply]);
-      }}
-    >
+    <FormBox>
       <StLetterBox>
         <div>
-          {/* option 사용 */}
-          캐릭터 선택 :
-          <select value={selected} onChange={onChangeSelectedHandler}>
-            {kakaoFriends.map((item) => {
-              return (
-                <option key={item} value={item}>
-                  {item}
-                </option>
-              );
-            })}
-          </select>
-          <br />닉 네 임 :
-          <input
-            type="text"
-            value={nickname}
-            onChange={onChangeNameHandeler}
-          ></input>
-          <br />내 용 :
-          <input
-            type="text"
-            value={contents}
-            onChange={onChangeContentsHandeler}
-          ></input>
-          <br />
-          <button type="submit">팬레터 등록</button>
-          <LetterBox
-            kakaoFriends={kakaoFriends}
-            kakao={kakao}
-            setKakao={setKakao}
-            nameBtn={nameBtn}
-          />
+          <form onSubmit={onSubmitLetter}>
+            캐릭터 선택 :
+            <StSelect onChange={onChangeSelectedHandler}>
+              <option value="RYAN">RYAN</option>
+              <option value="APEACH">APEACH</option>
+              <option value="TUBE">TUBE</option>
+              <option value="CHOONSIK">CHOONSIK</option>
+            </StSelect>
+            <br />
+            {/* 최대글자수제한 기능 넣기 */}
+            닉네임 :
+            <InputNickname
+              name="nickName"
+              type="text"
+              placeholder="닉네임을 입력해주세요 (20자 이내)"
+              value={nickname}
+              onChange={onChangeNameHandeler}
+              maxLength={20}
+            ></InputNickname>
+            <br />내 용 :
+            <br />
+            <InputContents
+              name="contents"
+              type="text"
+              placeholder="전하고 싶은 내용을 입력해주세요 (100자 이내)"
+              value={contents}
+              onChange={onChangeContentsHandeler}
+              maxLength={100}
+            ></InputContents>
+            <br />
+            <StLetterSubmitBtn type="submit">팬레터 등록</StLetterSubmitBtn>
+          </form>
         </div>
       </StLetterBox>
     </FormBox>

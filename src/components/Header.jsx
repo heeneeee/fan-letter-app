@@ -8,13 +8,13 @@ const StBody = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
-  position: relative;
+  /* position: relative; */
   align-items: center;
   background-image: url(${kakaoFriends});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  width: 100%;
+  width: 100vw;
   height: 500px;
 `;
 
