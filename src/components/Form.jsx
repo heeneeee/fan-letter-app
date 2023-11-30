@@ -2,66 +2,17 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import uuid from "react-uuid";
 
-const FormBox = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
-  align-items: center;
-`;
-
-const StLetterBox = styled.div`
-  background-color: lightgray;
-  width: 700px;
-  height: 250px;
-  border-radius: 15px;
-  padding: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const InputNickname = styled.input`
-  width: 300px;
-  margin-left: 10px;
-  border-radius: 5px;
-  border: 0px;
-  height: 20px;
-`;
-
-const InputContents = styled.input`
-  width: 400px;
-  height: 80px;
-  border-radius: 5px;
-  border: 0px;
-  height: 80px;
-`;
-const StLetterSubmitBtn = styled.button`
-  margin-top: 20px;
-  margin-left: 320px;
-  border-radius: 15px;
-  padding: 5px;
-  width: 100px;
-  background-color: lightsalmon;
-`;
-
-const StSelect = styled.select`
-  margin-left: 10px;
-  border-radius: 5px;
-  border: 0px;
-  height: 20px;
-`;
-
 const Form = ({ letter, setLetter }) => {
   const [nickname, setNickname] = useState("");
   const [contents, setContents] = useState("");
   const [member, setMember] = useState("RYAN");
 
-  // 닉네임 input창 onChang핸들러
+  // 닉네임 input창 onChange핸들러
   const onChangeNameHandeler = (event) => {
     setNickname(event.target.value);
   };
 
-  // 내용 input창 onChang핸들러
+  // 내용 input창 onChange핸들러
   const onChangeContentsHandeler = (event) => {
     setContents(event.target.value);
   };
@@ -78,6 +29,7 @@ const Form = ({ letter, setLetter }) => {
       alert("내용을 입력해주세요!");
       return;
     }
+
     const newReply = {
       createdAt: new Date().toISOString().replace("T", " ").substring(0, 19),
       id: uuid(),
@@ -137,3 +89,52 @@ const Form = ({ letter, setLetter }) => {
 };
 
 export default Form;
+
+const FormBox = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  align-items: center;
+`;
+
+const StLetterBox = styled.div`
+  background-color: lightgray;
+  width: 700px;
+  height: 250px;
+  border-radius: 15px;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const InputNickname = styled.input`
+  width: 300px;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: 0px;
+  height: 20px;
+`;
+
+const InputContents = styled.input`
+  width: 400px;
+  height: 80px;
+  border-radius: 5px;
+  border: 0px;
+  height: 80px;
+`;
+const StLetterSubmitBtn = styled.button`
+  margin-top: 20px;
+  margin-left: 320px;
+  border-radius: 15px;
+  padding: 5px;
+  width: 100px;
+  background-color: lightsalmon;
+`;
+
+const StSelect = styled.select`
+  margin-left: 10px;
+  border-radius: 5px;
+  border: 0px;
+  height: 20px;
+`;
