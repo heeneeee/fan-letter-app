@@ -54,9 +54,7 @@ const CreatedAt = styled.p`
   margin: 10px;
 `;
 
-const Avarta = styled.image`
-  width: 100px;
-`;
+const Avatar = styled.p``;
 
 const NicknameAndContents = styled.div`
   display: flex;
@@ -94,11 +92,17 @@ const LetterBox = ({ letter, kakao, kakaoFriends, nameBtn }) => {
                   >
                     <StLetterContainer>
                       <StLetter>
-                        <Avarta>
-                          <img src={item.avarta} alt="img" />
-                        </Avarta>
+                        <Avatar>
+                          <img
+                            src={item.avatar}
+                            alt="img"
+                            style={{ width: "100px", borderRadius: "50%" }}
+                          />
+                        </Avatar>
                         <NicknameAndContents>
-                          <CreatedAt>{item.createdAt}</CreatedAt>
+                          <CreatedAt>
+                            {item.createdAt.replace("T", " ").substring(0, 19)}
+                          </CreatedAt>
                           <Nickname>{item.nickname}</Nickname>
                           <Contents>{item.contents}</Contents>
                         </NicknameAndContents>

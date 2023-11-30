@@ -76,9 +76,10 @@ const Form = ({ letter, setLetter }) => {
     event.preventDefault();
     if (nickname === "" && contents === "") {
       alert("내용을 입력해주세요!");
+      return;
     }
     const newReply = {
-      createdAt: new Date().toISOString(),
+      createdAt: new Date().toISOString().replace("T", " ").substring(0, 19),
       id: uuid(),
       nickname: nickname,
       avatar:
